@@ -1,0 +1,57 @@
+version: "3.6"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: products-db
+    tty: true
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "33306:3306"
+    environment:
+      MYSQL_DATABASE: products
+      MYSQL_ROOT_PASSWORD: products
+      MYSQL_PASSWORD: products
+      MYSQL_USER: products
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    healthcheck:
+      test: "/etc/init.d/mysql status"
+      interval: 1s
+      retries: 120
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - productsNetwork
+  api:
+    build:
+      args:
+        user: api
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: products-api
+    container_name: products-api
+    depends_on:
+      - db
+    command: sh -c "/wait && npm run dev"
+    environment:
+      - WAIT_HOSTS=db:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "3333:3333"
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    networks:
+      - productsNetwork
+networks:
+  productsNetwork:
+    driver: bridge
