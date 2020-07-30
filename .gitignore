@@ -1,0 +1,5 @@
+backend-end/node_modules
+front-end/node_modules
+back-end/app/yarn.lock
+back-end/app/yarn-error.log
+fron-tend/yarn.lock
