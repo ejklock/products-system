@@ -1,15 +1,13 @@
-[
-  {
-    "type": "mysql",
-    "host": "db",
-    "port": 3306,
-    "username": "products",
-    "password": "products",
-    "database": "products",
-    "entities": ["./src/models/*.ts"],
-    "migrations": ["./src/database/migrations/*.ts"],
-    "cli": {
-      "migrationsDir": "./src/database/migrations"
-    }
+{
+  "type": "mysql",
+  "host": "db",
+  "port": 3306,
+  "username": "products",
+  "password": "products",
+  "database": "products",
+  "entities": ["./src/models/*.ts"],
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
   }
-]
+}

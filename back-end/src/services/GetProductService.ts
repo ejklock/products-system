@@ -1,6 +1,6 @@
-import ProductRepository from "src/repositories/ProductRepository";
+import ProductRepository from "../repositories/ProductRepository";
 import Product from "@models/Product";
-import AppError from "src/errors/AppError";
+import AppError from "../errors/AppError";
 
 export default class GetAllProductsService {
   private productRepository: ProductRepository;

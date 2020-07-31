@@ -23,6 +23,11 @@ export default class CreateProducts1595801839764 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: "created",
+            type: "timestamp",
+            isNullable: false,
+          },
+          {
             name: "description",
             type: "text",
             isNullable: false,

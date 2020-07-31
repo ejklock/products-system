@@ -34,6 +34,7 @@ export default class ProductRepository implements IProductRepository {
     price,
     rating,
     width,
+    created,
   }: CreateProductDTO): Promise<Product> {
     const product = this.repository.create({
       title,

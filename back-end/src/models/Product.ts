@@ -1,4 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from "typeorm";
 
 @Entity("products")
 export default class Product {
@@ -28,4 +33,7 @@ export default class Product {
 
   @Column("integer")
   rating: number;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  created: Date;
 }

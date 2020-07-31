@@ -8,16 +8,20 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Liste, crie, edite ou apague os produtos', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('front-end app is running!');
+    expect(page.getTitleText()).toEqual(
+      'Liste, crie, edite ou apague os produtos'
+    );
   });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    expect(logs).not.toContain(
+      jasmine.objectContaining({
+        level: logging.Level.SEVERE,
+      } as logging.Entry)
+    );
   });
 });

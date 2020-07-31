@@ -2,7 +2,7 @@ import path from "path";
 import crypto from "crypto";
 import multer from "multer";
 import { request } from "express";
-import AppError from "src/errors/AppError";
+import AppError from "../errors/AppError";
 
 const storage = multer.diskStorage({
   destination: path.resolve(__dirname, "..", "..", "tmp"),

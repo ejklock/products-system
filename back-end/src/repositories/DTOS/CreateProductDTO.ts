@@ -7,4 +7,5 @@ export default interface CreateProductDTO {
   width: number;
   price: number;
   rating: number;
+  created: Date;
 }

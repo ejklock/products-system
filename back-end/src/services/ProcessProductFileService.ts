@@ -1,10 +1,10 @@
 import Joi from "@hapi/joi";
 import Product from "@models/Product";
 import * as fs from "fs";
-import AppError from "src/errors/AppError";
+import AppError from "../errors/AppError";
 
 export default class ProcessProductFileService {
-  public async execute(file: Express.Multer.File): Promise<Product[]> {
+  public async execute(file): Promise<Product[]> {
     const buffer = fs.readFileSync(file.path).toString();
     const products: Product[] = JSON.parse(buffer);
     await this.validateJSON(products);

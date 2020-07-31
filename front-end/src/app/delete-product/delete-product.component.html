@@ -1,0 +1,52 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Edit</h1>
+    <nav class="breadcrumb is-large" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="is-active">
+          <a href="/delete/{{ product?.id }}">Delete</a>
+        </li>
+      </ul>
+    </nav>
+    <hr />
+
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image">
+              <img
+                class="product-img is-128x128"
+                src="../../assets/images/{{ product?.filename }}"
+                alt="Product Image"
+              />
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{ product?.title }}</p>
+            <p class="subtitle is-6">R${{ product?.price.toPrecision(4) }}</p>
+            <p class="subtitle is-6">
+              <strong>Type:</strong> {{ product?.type }}
+            </p>
+          </div>
+        </div>
+        <div class="content">
+          <form [formGroup]="editProductFormGroup" (ngSubmit)="submit()">
+            <p class="title is-4">Tem certeza que deseja deletar o produto?</p>
+            <div class="field is-grouped">
+              <div class="control">
+                <a class="button is-link is-danger" [routerLink]="['/']"
+                  >Cancelar</a
+                >
+              </div>
+              <div class="control">
+                <button type="submit" class="button is-success">Sim</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

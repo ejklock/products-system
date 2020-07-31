@@ -1,4 +1,4 @@
-import ProductRepository from "src/repositories/ProductRepository";
+import ProductRepository from "../repositories/ProductRepository";
 import Product from "@models/Product";
 
 export default class CreateProductService {

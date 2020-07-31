@@ -1,0 +1,177 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Edit</h1>
+    <nav class="breadcrumb is-large" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="is-active"><a href="/edit/{{ product?.id }}">Edit</a></li>
+      </ul>
+    </nav>
+    <hr />
+
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image">
+              <img
+                class="product-img is-128x128"
+                src="../../assets/images/{{ product?.filename }}"
+                alt="Product Image"
+              />
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{ product?.title }}</p>
+            <p class="subtitle is-6">R${{ product?.price.toPrecision(4) }}</p>
+            <p class="subtitle is-6">
+              <strong>Type:</strong> {{ product?.type }}
+            </p>
+          </div>
+        </div>
+        <div class="content">
+          <form [formGroup]="editProductFormGroup" (ngSubmit)="submit()">
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <input
+                  formControlName="title"
+                  required
+                  name="title"
+                  class="input"
+                  type="text"
+                  placeholder="Text input"
+                />
+                <div
+                  *ngIf="title.invalid && (title.dirty || title.touched)"
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="title.errors.required">
+                    <span class="has-text-danger">
+                      Title Obrigatório.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Price</label>
+              <div class="control">
+                <input
+                  formControlName="price"
+                  class="input"
+                  required
+                  min="0"
+                  step="any"
+                  type="number"
+                  placeholder="Text input"
+                  value="{{ product?.price }}"
+                />
+                <div
+                  *ngIf="price.invalid && (price.dirty || price.touched)"
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="price.errors.required">
+                    <span class="has-text-danger">
+                      Price Obrigatório.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Type</label>
+              <div class="control">
+                <input
+                  formControlName="type"
+                  class="input"
+                  required
+                  placeholder="Type"
+                  value="{{ product?.type }}"
+                />
+                <div
+                  *ngIf="type.invalid && (type.dirty || type.touched)"
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="type.errors.required">
+                    <span class="has-text-danger">
+                      type Obrigatório.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <textarea
+                  class="textarea"
+                  formControlName="description"
+                  placeholder="Textarea"
+                  >{{ product?.description }}</textarea
+                >
+                <div
+                  *ngIf="
+                    description.invalid &&
+                    (description.dirty || description.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="description.errors.required">
+                    <span class="has-text-danger">
+                      description Obrigatório.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Rating</label>
+              <div class="control">
+                <input
+                  formControlName="rating"
+                  class="input"
+                  type="number"
+                  min="0"
+                  max="10"
+                  required
+                  placeholder="Rating"
+                  value="{{ product?.rating }}"
+                />
+                <div
+                  *ngIf="rating.invalid && (rating.dirty || rating.touched)"
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="rating.errors.required">
+                    <span class="has-text-danger">
+                      rating Obrigatório.
+                    </span>
+                  </div>
+                  <div *ngIf="rating.errors.min" class="has-text-danger">
+                    Rating deve ser no mínimo 0
+                  </div>
+                  <div *ngIf="rating.errors.max" class="has-text-danger">
+                    Rating deve ser no máximo 10
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button type="submit" class="button is-success">Salvar</button>
+              </div>
+              <div class="control">
+                <a class="button is-link is-danger" [routerLink]="['/']"
+                  >Cancelar</a
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -46,10 +46,10 @@ productRouter.delete(
 productRouter.post(
   "/createMany",
   productsUpload.single("products"),
-  async ({ file }: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const processProductFileService = new ProcessProductFileService();
     const createProductService = new CreateProductService();
-    const products = await processProductFileService.execute(file);
+    const products = await processProductFileService.execute(req["file"]);
     const result = await createProductService.execute(products);
     return res.json({
       message: `${result.length} produtos criados com sucesso`,
